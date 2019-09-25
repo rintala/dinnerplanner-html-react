@@ -1,0 +1,337 @@
+/* Global stylesheet - reusable styling and theme */
+.button {
+  background-color: orange;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-shadow: 2px 2px #2b2a2a;
+  text-transform: capitalize;
+}
+
+.dropDownMenu {
+  border-style: solid;
+  border-color: black !important;
+  border-width: 3px !important;
+  height: 2rem;
+  text-transform: capitalize;
+  border-radius: 0;
+}
+
+.dropDownMenu:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.border {
+  border-style: solid;
+  border-color: black !important;
+  border-width: 3px !important;
+}
+
+.text {
+  background-color: #d6d1d1;
+  margin-top: 0.2rem;
+  padding: 0.2rem;
+  text-align: center;
+}
+
+#searchDescription {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  font-family: "Sofia";
+}
+
+#sideBarTitle {
+  font-size: 18px;
+  font-family: "Sofia";
+  font-weight: bold;
+  padding: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 7rem;
+  object-fit: fill;
+}
+
+#searchBtn {
+  height: 2rem !important;
+}
+
+#homeWrapper {
+  width: 100%;
+}
+
+#loaderWrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+}
+
+.header {
+  font-family: "Sofia";
+  font-size: 44px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+  height: 15vh;
+  padding: 10px;
+}
+
+#dishSearchViewWrapper {
+  background-color: beige;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
+
+.dishOverViewImage {
+  height: 20rem;
+  width: 20rem;
+}
+
+#dishSearchHeader {
+  background-color: rgb(171, 171, 172);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  width: auto;
+}
+
+#dishItems {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  justify-content: left;
+  align-items: top;
+  flex-wrap: wrap;
+}
+.dish {
+  padding-right: 0.5rem;
+}
+
+.dishContainer {
+  padding: 10px;
+  flex: 1 1 150px;
+  max-width: 9rem;
+}
+
+@media (min-width: 469px) {
+  /* CSS in here for desktop only */
+  .dishImage {
+    width: 10rem;
+    height: 10rem;
+  }
+  .dishText {
+    width: 10rem;
+  }
+  #mobileMenu {
+    display: none;
+  }
+}
+
+@media (max-width: 469px) {
+  .dishImage {
+    width: 100%;
+    height: auto !important;
+  }
+  #sideBarView {
+    display: none;
+  }
+  #mobileMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.1rem;
+  }
+  #dishDetailsWrapper {
+    flex-wrap: wrap;
+  }
+}
+
+.ingredietsContainer {
+  background-color: #f5d07e;
+  padding: 1rem;
+}
+
+.dishItem {
+  height: 100px;
+  width: 100px;
+  background-color: purple;
+  border-style: solid;
+  border-color: black;
+  padding: 20px;
+  margin: 10px;
+}
+
+#sideBarViewContainer {
+  background-color: gray;
+}
+
+#pageHeader {
+  font-size: 1.7rem;
+  font-weight: bold;
+  display: inline;
+}
+#peopleCounter {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #ababac;
+  padding: 10px;
+}
+
+#dishesInfoTitle {
+  font-family: "Sofia";
+  font-weight: bold;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
+}
+
+#dishesInfo {
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.dishInfo {
+  display: flex;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#totalPrice {
+  text-align: right;
+  padding: 10px;
+}
+
+#viewContainer {
+  width: 100%;
+  /*  justify-content: space-between; */
+}
+
+#overviewHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#dishIngredients {
+  width: 100%;
+}
+
+.dishIngredient {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#dishIngredientsTitle {
+  font-family: Sofia;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+}
+
+#dishDetailsImage {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+#dishDetailsTitle {
+  font-size: 20px;
+  font-family: Sofia;
+  font-weight: bold;
+}
+
+#dishDetailsWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#dishDetailsBody {
+  padding-top: 10px;
+}
+
+#dishDetails {
+  padding: 20px;
+  width: 100%;
+}
+
+.dishIngredientMeasure {
+  width: 100%;
+}
+.dishIngredientTitle {
+  width: 100%;
+}
+.dishIngredientPrice {
+  width: 100%;
+}
+
+hr {
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 8px auto;
+  height: 0;
+  width: 100%;
+  max-height: 0;
+  font-size: 1px;
+  line-height: 0;
+  clear: both;
+  border: none;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #ffffff;
+}
+
+.dishesToPrint {
+  display: flex;
+  flex-direction: row;
+}
+
+.dishToPrint {
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 469px) {
+  .dishesToPrint {
+    flex-wrap: wrap;
+  }
+  .dishToPrint {
+    flex-wrap: wrap;
+  }
+}
+
+.dishToPrintText {
+  padding: 10px;
+}
