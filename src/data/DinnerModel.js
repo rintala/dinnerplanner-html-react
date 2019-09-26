@@ -190,7 +190,9 @@ class DinnerModel {
   }
 
   // implemenent remove function for observers as well
-
+  removeObserver(observer) {
+    this._observers.filter(obs => obs !== observer);
+  }
   updateObservers(detailsToUpdateWith) {
     // instead define update function in each observer that doesnt re-render entire view
     this._observers.forEach(obs => obs.update(detailsToUpdateWith));

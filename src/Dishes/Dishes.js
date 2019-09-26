@@ -41,7 +41,27 @@ class Dishes extends Component {
 
   render() {
     let dishesList = null;
+    const dishTypes = [
+      "all",
+      "lunch",
+      "main course",
+      "morning meal",
+      "brunch",
+      "main dish",
+      "breakfast",
+      "dinner"
+    ];
 
+    let cutOverflowingText = (text, numberOfChars) => {
+      if (text.length > numberOfChars) {
+        return text.substr(0, numberOfChars) + "...";
+      }
+      return text;
+    };
+    /* let dishTypesHTML = dishTypes
+      .map(dishName => `<option>${dishName}</option>`)
+      .join("");
+ */
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -50,9 +70,17 @@ class Dishes extends Component {
         dishesList = <em>Loading...</em>;
         break;
       case "LOADED":
-        console.log("this state", this.state);
         dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}>{dish.title}</li>
+          <div key={dish.id} id={dish.id} className="dish">
+            <img
+              className="dishImage image border"
+              src={modelInstance.getFullDishImageURL(dish.imageUrls)}
+            />
+            {console.log(dish)}
+            <p className="dishText text border">
+              {cutOverflowingText(dish.title, 15)}
+            </p>
+          </div>
         ));
         break;
       default:
@@ -62,7 +90,36 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <ul>{dishesList}</ul>
+        <div>
+          <div id="dishSearchViewWrapper">
+            <div id="sideBarView"></div>
+            <div id="dishSearchBody">
+              <div id="dishSearchHeader">
+                <div>
+                  <p className="title">Find a dish</p>
+                </div>
+                <div id="dishSearchView">
+                  <input
+                    id="searchKeyword"
+                    className="border"
+                    type="text"
+                    placeholder="Enter keywords"
+                  ></input>
+                  <select id="dropDownMenu" className="dropDownMenu">
+                    {dishTypes.map(dishName => (
+                      <option key={dishName}>{dishName}</option>
+                    ))}
+                  </select>
+                  <button id="searchBtn" className="button">
+                    {" "}
+                    search{" "}
+                  </button>
+                </div>
+              </div>
+              <div id="dishItems">{dishesList}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
