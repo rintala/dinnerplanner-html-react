@@ -141,15 +141,11 @@ class DinnerModel {
 
     let url;
     if (!type && !query) {
-      url = `http://sunset.nada.kth.se:8080/iprog/group/13/recipes/search?`;
+      url = this.baseURLRecipes + `search?`;
     } else {
-      url = `http://sunset.nada.kth.se:8080/iprog/group/13/recipes/search?query=${query}&dishTypes=${type}`;
+      url = this.baseURLRecipes + `search?query=${query}&dishTypes=${type}`;
     }
-    return fetch(
-      url,
-
-      httpOptions
-    )
+    return fetch(url, httpOptions)
       .then(res => {
         if (res.status === 200) {
           return res.json();
@@ -158,13 +154,12 @@ class DinnerModel {
         }
       })
       .then(data => data.results)
-      .then(data => console.log("data", data))
       .catch(err => err);
   }
 
   //Returns a dish of specific ID
   getDish(id) {
-    let url = `http://sunset.nada.kth.se:8080/iprog/group/13/recipes/${id}/information`;
+    let url = this.baseURLRecipes + `${id}/information`;
     return fetch(url, httpOptions)
       .then(this._handleHTTPErrorGetDish)
       .catch(console.error);
@@ -198,7 +193,7 @@ class DinnerModel {
 
   updateObservers(detailsToUpdateWith) {
     // instead define update function in each observer that doesnt re-render entire view
-    this._observers.forEach(obs => obs.updateView(detailsToUpdateWith));
+    this._observers.forEach(obs => obs.update(detailsToUpdateWith));
   }
 }
 

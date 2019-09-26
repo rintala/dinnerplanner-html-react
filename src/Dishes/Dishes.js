@@ -10,7 +10,8 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      status: "LOADING",
+      dishes: null
     };
   }
 
@@ -23,12 +24,15 @@ class Dishes extends Component {
     modelInstance
       .getAllDishes()
       .then(dishes => {
+        console.log("dishes.results", dishes);
         this.setState({
           status: "LOADED",
-          dishes: dishes.results
+          dishes: dishes
         });
       })
+
       .catch(() => {
+        console.log("errors!");
         this.setState({
           status: "ERROR"
         });
@@ -46,6 +50,7 @@ class Dishes extends Component {
         dishesList = <em>Loading...</em>;
         break;
       case "LOADED":
+        console.log("this state", this.state);
         dishesList = this.state.dishes.map(dish => (
           <li key={dish.id}>{dish.title}</li>
         ));
@@ -54,7 +59,6 @@ class Dishes extends Component {
         dishesList = <b>Failed to load data, please try again</b>;
         break;
     }
-
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
