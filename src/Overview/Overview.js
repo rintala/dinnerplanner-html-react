@@ -35,12 +35,7 @@ class Overview extends Component {
       })
       .join("");
 
-    /* this.container.querySelector("#dishItems").innerHTML = dishItemsHTML; */
-
     const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople();
-    /*  this.container.getElementsByClassName(
-      "value-total-price"
-    )[0].innerHTML = totalMenuPrice; */
 
     return (
       <div>
