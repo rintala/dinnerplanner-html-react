@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
 import { Link } from "react-router-dom";
+
 class Dishes extends Component {
   constructor(props) {
     super(props);
@@ -68,8 +69,8 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <Link to={"/details/" + dish.id}>
-            <div key={dish.id} id={dish.id} className="dish">
+          <Link key={dish.id} to={"/details/" + dish.id}>
+            <div id={dish.id} className="dish">
               <img
                 className="dishImage image border"
                 src={modelInstance.getFullDishImageURL(dish.imageUrls)}

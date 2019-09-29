@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Overview.css";
 
 import { Link } from "react-router-dom";
-import cutOverflowingText from "../utils";
 
 class Overview extends Component {
   constructor(props) {
@@ -16,25 +15,29 @@ class Overview extends Component {
   }
 
   render() {
-    let dishItemsHTML = this.props.model
-      .getFullMenu()
-      .map(dish => {
-        this.props.model.getDishPriceForNumberOfPeople(dish);
-        return `
-          <div className="dish">
-            <img class="dishImage border" src="${this.props.model.getDishImageURLFromString(
-              dish.image
-            )}"/>
-            <p className="dishText value-main-course-name">${cutOverflowingText(
-              dish.title,
-              20
-            )}</p>
-            <p className="dishText">${this.props.model.getDishPriceForNumberOfPeople(
-              dish
-            )} SEK</p>
-          </div>`;
-      })
-      .join("");
+    let cutOverflowingText = (text, numberOfChars) => {
+      if (text.length > numberOfChars) {
+        return text.substr(0, numberOfChars) + "...";
+      }
+      return text;
+    };
+    let dishItemsHTML = this.props.model.getFullMenu().map(dish => {
+      this.props.model.getDishPriceForNumberOfPeople(dish);
+      return (
+        <div className="dish">
+          <img
+            className="dishImage border"
+            src={this.props.model.getDishImageURLFromString(dish.image)}
+          />
+          <p className="dishText value-main-course-name">
+            {cutOverflowingText(dish.title, 20)}
+          </p>
+          <p className="dishText">
+            {this.props.model.getDishPriceForNumberOfPeople(dish)} SEK
+          </p>
+        </div>
+      );
+    });
 
     const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople();
 
@@ -65,9 +68,11 @@ class Overview extends Component {
               <p className="value-total-price">{totalMenuPrice}</p>
             </div>
             <hr />
-            <button id="toPrintBtn" class="button">
-              Print full recipe
-            </button>
+            <Link to="/printout">
+              <button id="toPrintBtn" className="button">
+                Print full recipe
+              </button>
+            </Link>
           </div>
         </div>
       </div>

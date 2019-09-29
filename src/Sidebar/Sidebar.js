@@ -40,6 +40,16 @@ class Sidebar extends Component {
   };
 
   render() {
+    const menuDishes = this.props.model.getFullMenu();
+    console.log("still in sidebar", menuDishes);
+    let dishInfoHTML = menuDishes.map(menuDish => (
+      <div key={menuDish} className="dishInfo">
+        <span className="value-main-course-name">{menuDish.title}</span>
+        <span>{this.props.model.getDishPriceForNumberOfPeople(menuDish)}</span>
+      </div>
+    ));
+    const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople();
+
     return (
       <div className="Sidebar">
         <div id="sideBarViewContainer">
@@ -63,10 +73,10 @@ class Sidebar extends Component {
             <span>Dish name</span>
             <span>Cost</span>
           </div>
-          <div id="dishesInfo"></div>
+          <div id="dishesInfo">{dishInfoHTML}</div>
 
           <div id="totalPrice">
-            SEK <span className="value-total-price"></span>
+            {totalMenuPrice} SEK <span className="value-total-price"></span>
           </div>
           <Link to="/overview">
             <button id="confirmBtn" className="button">
@@ -74,12 +84,6 @@ class Sidebar extends Component {
             </button>
           </Link>
         </div>
-        <p>
-          People:
-          <input type="number" />
-          <br />
-          Total number of guests: {this.state.numberOfGuests}
-        </p>
       </div>
     );
   }

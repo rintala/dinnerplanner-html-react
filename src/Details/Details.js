@@ -92,9 +92,17 @@ class Details extends Component {
               </div>
               <hr />
               <div>
-                <button id="addDishToMenuButton" className="button">
-                  Add dish to menu
-                </button>
+                <Link to="/search">
+                  <button
+                    id="addDishToMenuButton"
+                    className="button"
+                    onClick={() => {
+                      this.props.model.addDishToMenu(this.state.dish);
+                    }}
+                  >
+                    Add dish to menu
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

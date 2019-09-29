@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-/* import Sidebar from "../Sidebar/Sidebar"; */
-/* import "./Overview.css"; */
-import cutOverflowingText from "../utils";
 import { Link } from "react-router-dom";
 
 class Printout extends Component {
@@ -16,35 +13,41 @@ class Printout extends Component {
   }
 
   render() {
+    let cutOverflowingText = (text, numberOfChars) => {
+      if (text.length > numberOfChars) {
+        return text.substr(0, numberOfChars) + "...";
+      }
+      return text;
+    };
     return (
       <div>
         <div id="pageHeader">
           <p>My dinner: {this.props.model.getNumberOfGuests()} people</p>
           <Link to="/search">
-            <button id="goBackBtn" class="button">
+            <button id="goBackBtn" className="button">
               Go back and edit dinner
             </button>
           </Link>
         </div>
         <hr />
         <div id="pageBody">
-          <div class="dishesToPrint">
+          <div className="dishesToPrint">
             <div id="dishItems">
-              {this.props.model.getFullMenu().map(dish => (
-                <div class="dishToPrint">
+              {this.props.model.getFullMenu().map((dish, idx) => (
+                <div key={idx} className="dishToPrint">
                   <img
-                    class="dishImage border"
+                    className="dishImage border"
                     src={this.props.model.getDishImageURLFromString(dish.image)}
                     alt="dish-image"
                   />
-                  <div class="dishToPrintText">
+                  <div className="dishToPrintText">
                     <p
                       className="value-main-course-name"
-                      style="font-size: 20px"
+                      style={{ fontSize: "20px" }}
                     >
                       {cutOverflowingText(dish.title, 20)}
                     </p>
-                    <p class="dishText">{dish.pricePerServing} </p>
+                    <p className="dishText">{dish.pricePerServing} </p>
                   </div>
                 </div>
               ))}
@@ -59,13 +62,14 @@ class Printout extends Component {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident.
             </div>
           </div>
-          <div id="priceDiv"></div>
           <div>
             <p>Total Cost</p>
-            <p class="value-total-price"></p>
+            <p className="value-total-price">
+              {this.props.model.getTotalMenuPriceForNumberOfPeople()}
+            </p>
           </div>
           <hr />
-          <button class="button">Print full recipe</button>
+          <button className="button">Print full recipe</button>
         </div>
       </div>
     );
