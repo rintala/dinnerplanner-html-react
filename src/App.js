@@ -4,6 +4,7 @@ import Welcome from "./Welcome/Welcome";
 import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import Overview from "./Overview/Overview";
+import Printout from "./Printout/Printout";
 import "./App.css";
 
 class App extends Component {
@@ -25,6 +26,10 @@ class App extends Component {
           <Route
             path="/search"
             render={() => <SelectDish model={modelInstance} />}
+          />
+          <Route
+            path="/printout"
+            render={() => <Printout model={modelInstance} />}
           />
           <Route
             path="/overview"
