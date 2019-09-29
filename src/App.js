@@ -5,6 +5,7 @@ import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import Overview from "./Overview/Overview";
 import Printout from "./Printout/Printout";
+import Details from "./Details/Details";
 import "./App.css";
 
 class App extends Component {
@@ -19,9 +20,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
+          <div className="header">{this.state.title}</div>
 
-          {/* We rended diffrent component based on the path */}
+          {/* We render different components based on the path */}
           <Route exact path="/" component={Welcome} />
           <Route
             path="/search"
@@ -34,6 +35,15 @@ class App extends Component {
           <Route
             path="/overview"
             render={() => <Overview model={modelInstance} />}
+          />
+          <Route
+            path="/details/:dishId"
+            render={params => (
+              <Details
+                model={modelInstance}
+                dishId={params.match.params.dishId}
+              />
+            )}
           />
         </header>
       </div>

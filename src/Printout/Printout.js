@@ -35,6 +35,7 @@ class Printout extends Component {
                   <img
                     class="dishImage border"
                     src={this.props.model.getDishImageURLFromString(dish.image)}
+                    alt="dish-image"
                   />
                   <div class="dishToPrintText">
                     <p

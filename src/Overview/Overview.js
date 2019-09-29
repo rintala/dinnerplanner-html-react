@@ -21,15 +21,15 @@ class Overview extends Component {
       .map(dish => {
         this.props.model.getDishPriceForNumberOfPeople(dish);
         return `
-          <div class="dish">
+          <div className="dish">
             <img class="dishImage border" src="${this.props.model.getDishImageURLFromString(
               dish.image
             )}"/>
-            <p class="dishText value-main-course-name">${cutOverflowingText(
+            <p className="dishText value-main-course-name">${cutOverflowingText(
               dish.title,
               20
             )}</p>
-            <p class="dishText">${this.props.model.getDishPriceForNumberOfPeople(
+            <p className="dishText">${this.props.model.getDishPriceForNumberOfPeople(
               dish
             )} SEK</p>
           </div>`;
@@ -45,13 +45,13 @@ class Overview extends Component {
           <div id="pageHeader">
             <p id="numberOfGuests">
               My dinner:{" "}
-              <span class="value-num-guests">
+              <span className="value-num-guests">
                 {this.props.model.getNumberOfGuests()}
               </span>{" "}
               people
             </p>
             <Link to="/search">
-              <button class="button" id="goBackBtn">
+              <button className="button" id="goBackBtn">
                 Go back and edit dinner
               </button>
             </Link>
@@ -62,7 +62,7 @@ class Overview extends Component {
             <div id="priceDiv"></div>
             <div>
               <p>Total Cost</p>
-              <p class="value-total-price">{totalMenuPrice}</p>
+              <p className="value-total-price">{totalMenuPrice}</p>
             </div>
             <hr />
             <button id="toPrintBtn" class="button">

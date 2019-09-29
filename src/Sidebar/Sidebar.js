@@ -36,6 +36,7 @@ class Sidebar extends Component {
   // our handler for the input's on change event
   onNumberOfGuestsChanged = e => {
     this.props.model.setNumberOfGuests(e.target.value);
+    console.log("model", this.props.model);
   };
 
   render() {
@@ -50,7 +51,7 @@ class Sidebar extends Component {
               </div>
               <div id="peopleCounter">
                 <input
-                  class="input-num-guests"
+                  className="input-num-guests"
                   type="number"
                   value={this.state.numberOfGuests}
                   onChange={this.onNumberOfGuestsChanged}
@@ -65,10 +66,10 @@ class Sidebar extends Component {
           <div id="dishesInfo"></div>
 
           <div id="totalPrice">
-            SEK <span class="value-total-price"></span>
+            SEK <span className="value-total-price"></span>
           </div>
           <Link to="/overview">
-            <button id="confirmBtn" class="button">
+            <button id="confirmBtn" className="button">
               Confirm dinner
             </button>
           </Link>

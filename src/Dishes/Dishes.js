@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // we can import the model instance directly
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
-
+import { Link } from "react-router-dom";
 class Dishes extends Component {
   constructor(props) {
     super(props);
@@ -58,10 +58,7 @@ class Dishes extends Component {
       }
       return text;
     };
-    /* let dishTypesHTML = dishTypes
-      .map(dishName => `<option>${dishName}</option>`)
-      .join("");
- */
+
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -71,16 +68,18 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <div key={dish.id} id={dish.id} className="dish">
-            <img
-              className="dishImage image border"
-              src={modelInstance.getFullDishImageURL(dish.imageUrls)}
-            />
-            {console.log(dish)}
-            <p className="dishText text border">
-              {cutOverflowingText(dish.title, 15)}
-            </p>
-          </div>
+          <Link to={"/details/" + dish.id}>
+            <div key={dish.id} id={dish.id} className="dish">
+              <img
+                className="dishImage image border"
+                src={modelInstance.getFullDishImageURL(dish.imageUrls)}
+              />
+              {console.log(dish)}
+              <p className="dishText text border">
+                {cutOverflowingText(dish.title, 15)}
+              </p>
+            </div>
+          </Link>
         ));
         break;
       default:
