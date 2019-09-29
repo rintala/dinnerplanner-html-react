@@ -1,5 +1,7 @@
 # Dinner Planner React
 
+Lab 4 in Interaction Programming and the Dynamic Web - DH2642 @ KTH Royal Institute of Technology.
+
 ## Set API key
 
 In order to access the API, you need to provide an API key, which is a secret to you and should therefore only be known locally on your system. Therefore, you need to set this `REACT_APP_SECRET_API_KEY` by setting such an environment variable on your system. Preferably, you can to this from the cmd on Windows (without the brackets):
