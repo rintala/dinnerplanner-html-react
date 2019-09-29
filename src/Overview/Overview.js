@@ -23,8 +23,9 @@ class Overview extends Component {
     };
     let dishItemsHTML = this.props.model.getFullMenu().map(dish => {
       this.props.model.getDishPriceForNumberOfPeople(dish);
+
       return (
-        <div className="dish">
+        <div key={dish.id} className="dish">
           <img
             className="dishImage border"
             src={this.props.model.getDishImageURLFromString(dish.image)}

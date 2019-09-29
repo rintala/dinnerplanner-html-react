@@ -43,7 +43,7 @@ class Sidebar extends Component {
     const menuDishes = this.props.model.getFullMenu();
     console.log("still in sidebar", menuDishes);
     let dishInfoHTML = menuDishes.map(menuDish => (
-      <div key={menuDish} className="dishInfo">
+      <div key={menuDish.id} className="dishInfo">
         <span className="value-main-course-name">{menuDish.title}</span>
         <span>{this.props.model.getDishPriceForNumberOfPeople(menuDish)}</span>
       </div>
