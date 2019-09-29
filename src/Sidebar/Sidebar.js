@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -40,14 +41,41 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="Sidebar">
-        <h3>This is the sidebar</h3>
+        <div id="sideBarViewContainer">
+          <div>
+            <div id="sideBarTitle">My dinner</div>
+            <div style={{ backgroundColor: "#ababac" }}>
+              <div style={{ paddingLeft: "10px", paddingTop: "5px" }}>
+                People
+              </div>
+              <div id="peopleCounter">
+                <input
+                  class="input-num-guests"
+                  type="number"
+                  value={this.state.numberOfGuests}
+                  onChange={this.onNumberOfGuestsChanged}
+                ></input>
+              </div>
+            </div>
+          </div>
+          <div id="dishesInfoTitle">
+            <span>Dish name</span>
+            <span>Cost</span>
+          </div>
+          <div id="dishesInfo"></div>
+
+          <div id="totalPrice">
+            SEK <span class="value-total-price"></span>
+          </div>
+          <Link to="/overview">
+            <button id="confirmBtn" class="button">
+              Confirm dinner
+            </button>
+          </Link>
+        </div>
         <p>
           People:
-          <input
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.onNumberOfGuestsChanged}
-          />
+          <input type="number" />
           <br />
           Total number of guests: {this.state.numberOfGuests}
         </p>

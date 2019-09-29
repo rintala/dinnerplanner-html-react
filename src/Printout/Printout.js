@@ -2,6 +2,7 @@ import React, { Component } from "react";
 /* import Sidebar from "../Sidebar/Sidebar"; */
 /* import "./Overview.css"; */
 import cutOverflowingText from "../utils";
+import { Link } from "react-router-dom";
 
 class Printout extends Component {
   constructor(props) {
@@ -19,9 +20,11 @@ class Printout extends Component {
       <div>
         <div id="pageHeader">
           <p>My dinner: {this.props.model.getNumberOfGuests()} people</p>
-          <button id="goBackBtn" class="button">
-            Go back and edit dinner
-          </button>
+          <Link to="/search">
+            <button id="goBackBtn" class="button">
+              Go back and edit dinner
+            </button>
+          </Link>
         </div>
         <hr />
         <div id="pageBody">

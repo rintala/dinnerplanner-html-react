@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Sidebar from "../Sidebar/Sidebar";
 import "./Overview.css";
+
+import { Link } from "react-router-dom";
 import cutOverflowingText from "../utils";
 
 class Overview extends Component {
@@ -40,7 +41,6 @@ class Overview extends Component {
     return (
       <div>
         <h2>This is the Overview screen</h2>
-        <Sidebar model={this.props.model} />
         <div>
           <div id="pageHeader">
             <p id="numberOfGuests">
@@ -50,9 +50,11 @@ class Overview extends Component {
               </span>{" "}
               people
             </p>
-            <button class="button" id="goBackBtn">
-              Go back and edit dinner
-            </button>
+            <Link to="/search">
+              <button class="button" id="goBackBtn">
+                Go back and edit dinner
+              </button>
+            </Link>
           </div>
           <hr />
           <div id="pageBody">
