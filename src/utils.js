@@ -5,19 +5,13 @@ export const cutOverflowingText = (text, numberOfChars) => {
   return text;
 };
 
-/* export default cutOverflowingText; */
-
 export const displayLoader = () => {
   document.getElementById("loader").style.display = "inline-block";
 };
 
-/* export default displayLoader; */
-
 export const hideLoader = () => {
   document.getElementById("loader").style.display = "none";
 };
-
-/* export default hideLoader; */
 
 export const addingDishesToMenu = (model, id) => {
   return new Promise(resolve => {

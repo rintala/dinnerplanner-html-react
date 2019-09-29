@@ -6,6 +6,7 @@ import SelectDish from "./SelectDish/SelectDish";
 import Overview from "./Overview/Overview";
 import Printout from "./Printout/Printout";
 import Details from "./Details/Details";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
@@ -20,7 +21,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="header">{this.state.title}</div>
+          <Link to="/search">
+            <div className="header">{this.state.title}</div>
+          </Link>
 
           {/* We render different components based on the path */}
           <Route exact path="/" component={Welcome} />

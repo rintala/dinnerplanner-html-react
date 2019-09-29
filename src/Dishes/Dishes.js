@@ -60,6 +60,16 @@ class Dishes extends Component {
       return text;
     };
 
+    const displayLoader = () => {
+      document.getElementById("loader").style.display = "inline-block";
+    };
+
+    /* export default displayLoader; */
+
+    const hideLoader = () => {
+      document.getElementById("loader").style.display = "none";
+    };
+
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -87,9 +97,55 @@ class Dishes extends Component {
         dishesList = <b>Failed to load data, please try again</b>;
         break;
     }
+
+    let getAllDishes = () => {
+      /* Makes an API call for dishes matching the search queries, then pushes the result to the view */
+      return new Promise(resolve => {
+        displayLoader();
+        document.querySelector("#dishItems").innerHTML = "";
+        const query = document.querySelector("#searchKeyword").value;
+        let dishType = document.querySelector("#dropDownMenu").value;
+
+        if (dishType === "all") dishType = "";
+
+        console.log("query", query);
+        console.log("dishType", dishType);
+        //Why does this return a promise?
+        const dishData = modelInstance
+          .getAllDishes(dishType, query)
+          .then(data =>
+            data.map(dish => {
+              return {
+                imageUrl: modelInstance.getFullDishImageURL(dish.imageUrls),
+                title: dish.title,
+                id: dish.id
+              };
+            })
+          )
+          .catch(error => error)
+          .finally(() => {
+            hideLoader();
+            dishData.then(dishes => {
+              console.log("dishess", dishes);
+              console.log("data", this.state);
+              this.setState({
+                status: "LOADED",
+                dishes: dishes
+              });
+              console.log("data after", this.state);
+            });
+            /*  dishData.then(data => this.view.addSearchResults(data)); */
+            resolve();
+          });
+      });
+    };
+
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
+        <div id="loader" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
         <div>
           <div id="dishSearchViewWrapper">
             <div id="sideBarView"></div>
@@ -105,12 +161,22 @@ class Dishes extends Component {
                     type="text"
                     placeholder="Enter keywords"
                   ></input>
-                  <select id="dropDownMenu" className="dropDownMenu">
+                  <select
+                    id="dropDownMenu"
+                    className="dropDownMenu"
+                    onChange={e => {
+                      getAllDishes();
+                    }}
+                  >
                     {dishTypes.map(dishName => (
                       <option key={dishName}>{dishName}</option>
                     ))}
                   </select>
-                  <button id="searchBtn" className="button">
+                  <button
+                    id="searchBtn"
+                    className="button"
+                    onClick={() => getAllDishes()}
+                  >
                     {" "}
                     search{" "}
                   </button>
