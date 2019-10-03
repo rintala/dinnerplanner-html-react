@@ -35,8 +35,12 @@ class Sidebar extends Component {
 
   // our handler for the input's on change event
   onNumberOfGuestsChanged = e => {
-    this.props.model.setNumberOfGuests(e.target.value);
-    console.log("model", this.props.model);
+    const val = parseInt(e.target.value);
+
+    this.props.model.setNumberOfGuests(val);
+
+    console.log("this props model", this.props.model);
+    this.update();
   };
 
   render() {

@@ -39,7 +39,7 @@ class DinnerModel {
   }
 
   setNumberOfGuests(num) {
-    if (num > 0) this.guests = num;
+    if (num >= 0 || !num) this.guests = !num ? "" : num;
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
   }

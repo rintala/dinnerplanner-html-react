@@ -126,8 +126,6 @@ class Dishes extends Component {
           .finally(() => {
             hideLoader();
             dishData.then(dishes => {
-              console.log("dishess", dishes);
-              console.log("data", this.state);
               this.setState({
                 status: "LOADED",
                 dishes: dishes
@@ -143,9 +141,7 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <div id="loader" class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
+
         <div>
           <div id="dishSearchViewWrapper">
             <div id="sideBarView"></div>
