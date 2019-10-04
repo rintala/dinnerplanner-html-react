@@ -42,6 +42,8 @@ class DinnerModel {
     if (num >= 0 || !num) this.guests = !num ? "" : num;
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
+    document.cookie = `guests=${num};`;
+
   }
 
   getNumberOfGuests() {
@@ -127,10 +129,13 @@ class DinnerModel {
         ])
       );
     }
+    document.cookie = 'dishes=' + this.getFullMenu().map(dish => dish.id);
   }
 
   removeDishFromMenu(id) {
+    //TODO: Does this work? 
     this.menu = this.menu.filter(dish => dish.id !== id);
+    document.cookie = 'dishes=' + this.getFullMenu().map(dish => dish.id);
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
