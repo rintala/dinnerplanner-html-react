@@ -12,7 +12,9 @@ class Dishes extends Component {
     // e.g. API data loading or error
     this.state = {
       status: "LOADING",
-      dishes: null
+      dishes: null,
+      dishType: "All",
+      query: ""
     };
   }
 
@@ -35,7 +37,8 @@ class Dishes extends Component {
       .catch(() => {
         console.log("errors!");
         this.setState({
-          status: "ERROR"
+          status: "ERROR",
+          dishes: null
         });
       });
   }
@@ -61,6 +64,7 @@ class Dishes extends Component {
     };
 
     const displayLoader = () => {
+      document.getElementById("loader").innerHTML = "Loading...";
       document.getElementById("loader").style.display = "inline-block";
     };
 
@@ -102,9 +106,9 @@ class Dishes extends Component {
       /* Makes an API call for dishes matching the search queries, then pushes the result to the view */
       return new Promise(resolve => {
         displayLoader();
-        document.querySelector("#dishItems").innerHTML = "";
-        const query = document.querySelector("#searchKeyword").value;
-        let dishType = document.querySelector("#dropDownMenu").value;
+
+        const query = this.state.query;
+        let dishType = this.state.dishType;
 
         if (dishType === "all") dishType = "";
 
@@ -115,6 +119,10 @@ class Dishes extends Component {
           .getAllDishes(dishType, query)
           .then(data =>
             data.map(dish => {
+              console.log(
+                "dish image urls",
+                modelInstance.getFullDishImageURL(dish.imageUrls)
+              );
               return {
                 imageUrl: modelInstance.getFullDishImageURL(dish.imageUrls),
                 title: dish.title,
@@ -154,12 +162,15 @@ class Dishes extends Component {
                     className="border"
                     type="text"
                     placeholder="Enter keywords"
+                    onChange={e => {
+                      this.setState({ query: e.target.value });
+                    }}
                   ></input>
                   <select
                     id="dropDownMenu"
                     className="dropDownMenu"
                     onChange={e => {
-                      getAllDishes();
+                      this.setState({ dishType: e.target.value });
                     }}
                   >
                     {dishTypes.map(dishName => (
@@ -176,6 +187,7 @@ class Dishes extends Component {
                   </button>
                 </div>
               </div>
+              <div id="loader" className="spinner-border" role="status"></div>
               <div id="dishItems">{dishesList}</div>
             </div>
           </div>
