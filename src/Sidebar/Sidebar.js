@@ -15,15 +15,15 @@ class Sidebar extends Component {
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to setup model observer
-  componentDidMount() {
+  /*  componentDidMount() {
     this.props.model.addObserver(this);
-  }
+  } */
 
   // this is called when component is removed from the DOM
   // good place to remove observer
-  componentWillUnmount() {
+  /* componentWillUnmount() {
     this.props.model.removeObserver(this);
-  }
+  } */
 
   // in our update function we modify the state which will
   // cause the component to re-render

@@ -140,8 +140,6 @@ class Dishes extends Component {
 
     return (
       <div className="Dishes">
-        <h3>Dishes</h3>
-
         <div>
           <div id="dishSearchViewWrapper">
             <div id="sideBarView"></div>
