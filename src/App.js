@@ -7,6 +7,7 @@ import Overview from "./Overview/Overview";
 import Printout from "./Printout/Printout";
 import Details from "./Details/Details";
 import { Link } from "react-router-dom";
+import readCookie from "./cookieHandler"
 import "./App.css";
 
 class App extends Component {
@@ -15,6 +16,14 @@ class App extends Component {
     this.state = {
       title: "Dinner Planner"
     };
+  }
+
+  componentDidMount() {
+    readCookie(modelInstance).then(() => {
+      console.log('reading cookie done')
+      console.log('Guests in model: ', modelInstance.getNumberOfGuests())
+      console.log('Menu in model: ', modelInstance.getFullMenu())
+    })
   }
 
   render() {

@@ -42,7 +42,7 @@ class DinnerModel {
     if (num >= 0 || !num) this.guests = !num ? "" : num;
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
-    document.cookie = `guests=${num};`;
+    document.cookie = 'guests=' + num + ';';
 
   }
 
@@ -123,10 +123,7 @@ class DinnerModel {
       this.menu.push(dishToAdd);
     } else {
       this.menu = Array.from(
-        new Set([
-          ...this.menu.filter(dish => dish.id !== dishToAdd.id),
-          dishToAdd
-        ])
+        new Set([...this.menu.filter(dish => dish.id !== dishToAdd.id), dishToAdd])
       );
     }
     document.cookie = 'dishes=' + this.getFullMenu().map(dish => dish.id);
@@ -206,4 +203,5 @@ class DinnerModel {
 
 // Export an instance of DinnerModel
 const modelInstance = new DinnerModel();
+
 export default modelInstance;
