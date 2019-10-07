@@ -119,12 +119,8 @@ class Dishes extends Component {
           .getAllDishes(dishType, query)
           .then(data =>
             data.map(dish => {
-              console.log(
-                "dish image urls",
-                modelInstance.getFullDishImageURL(dish.imageUrls)
-              );
               return {
-                imageUrl: modelInstance.getFullDishImageURL(dish.imageUrls),
+                imageUrls: dish.imageUrls,
                 title: dish.title,
                 id: dish.id
               };

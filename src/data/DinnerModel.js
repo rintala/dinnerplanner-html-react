@@ -43,7 +43,6 @@ class DinnerModel {
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
     document.cookie = `guests=${num};`;
-
   }
 
   getNumberOfGuests() {
@@ -129,13 +128,13 @@ class DinnerModel {
         ])
       );
     }
-    document.cookie = 'dishes=' + this.getFullMenu().map(dish => dish.id);
+    document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
   }
 
   removeDishFromMenu(id) {
-    //TODO: Does this work? 
+    //TODO: Does this work?
     this.menu = this.menu.filter(dish => dish.id !== id);
-    document.cookie = 'dishes=' + this.getFullMenu().map(dish => dish.id);
+    document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
@@ -148,8 +147,9 @@ class DinnerModel {
     if (!type && !query) {
       url = this.baseURLRecipes + `search?`;
     } else {
-      url = this.baseURLRecipes + `search?query=${query}&dishTypes=${type}`;
+      url = this.baseURLRecipes + `search?query=${query}&type=${type}`;
     }
+
     return fetch(url, httpOptions)
       .then(res => {
         if (res.status === 200) {
