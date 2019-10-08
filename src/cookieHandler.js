@@ -16,6 +16,7 @@ function readCookie(model) {
           });
         });
       });
+      console.log('reading cookie done in reading cookie')
       return Promise.all(promiseArray);
     }
   } else {

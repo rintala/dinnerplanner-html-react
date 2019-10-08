@@ -16,16 +16,21 @@ class App extends Component {
     this.state = {
       title: "Dinner Planner"
     };
-  }
 
-  componentDidMount() {
+
+  }
+  componentWillMount() {
     readCookie(modelInstance).then(() => {
-      console.log('reading cookie done')
-      console.log('Guests in model: ', modelInstance.getNumberOfGuests())
-      console.log('Menu in model: ', modelInstance.getFullMenu())
+      this.setState({
+        menuDishes: modelInstance.getFullMenu(),
+        totalPrice: modelInstance.getTotalMenuPriceForNumberOfPeople()
+      });
     })
-  }
+    console.log('reading cookie done in mount')
+    console.log('Guests in model: ', modelInstance.getNumberOfGuests())
+    console.log('Menu in model: ', modelInstance.getFullMenu())
 
+  }
   render() {
     return (
       <div className="App">

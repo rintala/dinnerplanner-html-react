@@ -8,7 +8,9 @@ class Sidebar extends Component {
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menuDishes: this.props.model.getFullMenu(),
+      totalPrice: this.props.model.getTotalMenuPriceForNumberOfPeople()
     };
   }
 
@@ -36,23 +38,24 @@ class Sidebar extends Component {
   // our handler for the input's on change event
   onNumberOfGuestsChanged = e => {
     const val = parseInt(e.target.value);
-
     this.props.model.setNumberOfGuests(val);
-
     // console.log("this props model", this.props.model);
     this.update();
   };
 
   render() {
-    const menuDishes = this.props.model.getFullMenu();
     // console.log("still in sidebar", menuDishes);
-    let dishInfoHTML = menuDishes.map(menuDish => (
+    console.log('menu dishes', this.state.menuDishes.length)
+    this.props.model.getFullMenu().map(dish => {
+      console.log(dish);
+    })
+    let dishInfoHTML = this.props.model.getFullMenu().map(menuDish => (
       <div key={menuDish.id} className="dishInfo">
         <span className="value-main-course-name">{menuDish.title}</span>
         <span>{this.props.model.getDishPriceForNumberOfPeople(menuDish)}</span>
       </div>
     ));
-    const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople();
+    const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople()
 
     return (
       <div className="Sidebar">
