@@ -46,7 +46,7 @@ class Details extends Component {
         dishesList = <em>Loading...</em>;
         break;
       case "LOADED":
-        console.log("dishes", this.state.dish);
+        // console.log("dishes", this.state.dish);
         dishesList = (
           <div>
             <div id="dishDetails">

@@ -27,12 +27,17 @@ function readCookie(model) {
 
 function parsingCookie() {
   console.log(document.cookie.split(';'))
-  return document.cookie.split(';').reduce((res, c) => {
-    const [key, val] = c
+  return document.cookie.split(';').reduce((acc, cur, idx) => {
+    if (idx === 1) {
+      // Special case for the first iteration.
+      const [key, val] = acc.trim().split('=').map(decodeURIComponent);
+      acc = { [key]: val }
+    }
+    const [key, val] = cur
       .trim()
       .split('=')
       .map(decodeURIComponent);
-    return Object.assign(res, { [key]: val })
+    return Object.assign(acc, { [key]: val })
   })
 }
 

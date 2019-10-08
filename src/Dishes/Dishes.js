@@ -27,7 +27,6 @@ class Dishes extends Component {
     modelInstance
       .getAllDishes()
       .then(dishes => {
-        console.log("dishes.results", dishes);
         this.setState({
           status: "LOADED",
           dishes: dishes
@@ -35,7 +34,6 @@ class Dishes extends Component {
       })
 
       .catch(() => {
-        console.log("errors!");
         this.setState({
           status: "ERROR",
           dishes: null
@@ -89,7 +87,6 @@ class Dishes extends Component {
                 className="dishImage image border"
                 src={modelInstance.getFullDishImageURL(dish.imageUrls)}
               />
-              {console.log(dish)}
               <p className="dishText text border">
                 {cutOverflowingText(dish.title, 15)}
               </p>
@@ -112,8 +109,6 @@ class Dishes extends Component {
 
         if (dishType === "all") dishType = "";
 
-        console.log("query", query);
-        console.log("dishType", dishType);
         //Why does this return a promise?
         const dishData = modelInstance
           .getAllDishes(dishType, query)
@@ -134,7 +129,6 @@ class Dishes extends Component {
                 status: "LOADED",
                 dishes: dishes
               });
-              console.log("data after", this.state);
             });
             /*  dishData.then(data => this.view.addSearchResults(data)); */
             resolve();
