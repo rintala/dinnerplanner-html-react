@@ -31,7 +31,9 @@ class Sidebar extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menuDishes: this.props.model.getFullMenu(),
+      totalPrice: this.props.model.getTotalMenuPriceForNumberOfPeople()
     });
   }
 
@@ -46,13 +48,17 @@ class Sidebar extends Component {
   render() {
     // console.log("still in sidebar", menuDishes);
     console.log('menu dishes', this.state.menuDishes.length)
-    this.props.model.getFullMenu().map(dish => {
+    this.state.menuDishes.map(dish => {
       console.log(dish);
     })
     let dishInfoHTML = this.props.model.getFullMenu().map(menuDish => (
       <div key={menuDish.id} className="dishInfo">
         <span className="value-main-course-name">{menuDish.title}</span>
         <span>{this.props.model.getDishPriceForNumberOfPeople(menuDish)}</span>
+        <span id={menuDish.id} onClick={(event) => {
+          this.props.model.removeDishFromMenu(event.target.id)
+          this.update()
+        }}>X</span>
       </div>
     ));
     const totalMenuPrice = this.props.model.getTotalMenuPriceForNumberOfPeople()

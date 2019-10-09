@@ -130,8 +130,7 @@ class DinnerModel {
   }
 
   removeDishFromMenu(id) {
-    //TODO: Does this work?
-    this.menu = this.menu.filter(dish => dish.id !== id);
+    this.menu = this.menu.filter(dish => dish.id != id);
     document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
   }
 
