@@ -43,6 +43,7 @@ class DinnerModel {
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
     document.cookie = 'guests=' + num + ';';
+    this.updateObservers('guests');
 
   }
 
@@ -197,6 +198,7 @@ class DinnerModel {
   }
   updateObservers(detailsToUpdateWith) {
     // instead define update function in each observer that doesnt re-render entire view
+    console.log('observer cointains: ', this._observers)
     this._observers.forEach(obs => obs.update(detailsToUpdateWith));
   }
 }

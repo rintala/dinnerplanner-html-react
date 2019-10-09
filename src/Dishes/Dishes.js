@@ -14,8 +14,11 @@ class Dishes extends Component {
       status: "LOADING",
       dishes: null,
       dishType: "All",
-      query: ""
+      query: "",
+      guests: modelInstance.getNumberOfGuests()
     };
+
+    modelInstance.addObserver(this);
   }
 
   // this methods is called by React lifecycle when the
@@ -39,6 +42,13 @@ class Dishes extends Component {
           dishes: null
         });
       });
+  }
+
+  update(details) {
+    console.log('updating from observer: ', details)
+    this.setState({
+      guests: modelInstance.getNumberOfGuests()
+    })
   }
 
   render() {
@@ -137,7 +147,9 @@ class Dishes extends Component {
     };
 
     return (
+
       <div className="Dishes">
+        <p>Guests {this.state.guests}</p>
         <div>
           <div id="dishSearchViewWrapper">
             <div id="sideBarView"></div>
