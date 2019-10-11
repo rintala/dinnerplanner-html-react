@@ -16,8 +16,6 @@ class App extends Component {
     this.state = {
       title: "Dinner Planner"
     };
-
-
   }
   componentWillMount() {
     readCookie(modelInstance).then(() => {
@@ -29,8 +27,8 @@ class App extends Component {
     console.log('reading cookie done in mount')
     console.log('Guests in model: ', modelInstance.getNumberOfGuests())
     console.log('Menu in model: ', modelInstance.getFullMenu())
-
   }
+
   render() {
     return (
       <div className="App">

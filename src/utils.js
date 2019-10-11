@@ -1,4 +1,5 @@
 export const cutOverflowingText = (text, numberOfChars) => {
+  if (!text) return
   if (text.length > numberOfChars) {
     return text.substr(0, numberOfChars) + "...";
   }

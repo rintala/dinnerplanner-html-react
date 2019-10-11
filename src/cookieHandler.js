@@ -4,9 +4,16 @@ function readCookie(model) {
     console.log('cookie: ', cookie)
     if (!isNaN(parseInt(cookie.guests))) {
       model.setNumberOfGuests(cookie.guests);
+      console.log('cookie: guests set')
     }
 
     if ((cookie.dishes + '').split(',').length > 0) {
+      console.log('cookie: setting dishes', cookie.dishes)
+      console.log('cookie: ', cookie.dishes)
+      if (!cookie.dishes) return new Promise(resolve => {
+        console.log('no dish loaded')
+        resolve();
+      });
       let dishArray = (cookie.dishes + '').split(',');
       let promiseArray = dishArray.map(dishId => {
         return new Promise(resolve => {
@@ -21,25 +28,23 @@ function readCookie(model) {
     }
   } else {
     return new Promise(resolve => {
+      console.log('no cookie loaded')
       resolve();
     });
   }
 }
 
 function parsingCookie() {
-  console.log(document.cookie.split(';'))
-  return document.cookie.split(';').reduce((acc, cur, idx) => {
-    if (idx === 1) {
-      // Special case for the first iteration.
-      const [key, val] = acc.trim().split('=').map(decodeURIComponent);
-      acc = { [key]: val }
-    }
+  const cookie = document.cookie
+  return cookie.split(';').reduce((acc, cur, idx) => {
     const [key, val] = cur
       .trim()
       .split('=')
       .map(decodeURIComponent);
+
+    console.log('%c----------------', 'font-size: 1.5rem')
     return Object.assign(acc, { [key]: val })
-  })
+  }, (''))
 }
 
 export default readCookie

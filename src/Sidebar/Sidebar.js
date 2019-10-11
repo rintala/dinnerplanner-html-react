@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
+import { cutOverflowingText } from "../utils"
 
 class Sidebar extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Sidebar extends Component {
     })
     let dishInfoHTML = this.props.model.getFullMenu().map(menuDish => (
       <div key={menuDish.id} className="dishInfo">
-        <span className="value-main-course-name">{menuDish.title}</span>
+        <span className="value-main-course-name">{cutOverflowingText(menuDish.title, 10)}</span>
         <span>{this.props.model.getDishPriceForNumberOfPeople(menuDish)}</span>
         <span id={menuDish.id} onClick={(event) => {
           this.props.model.removeDishFromMenu(event.target.id)

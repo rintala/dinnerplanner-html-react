@@ -127,12 +127,18 @@ class DinnerModel {
         new Set([...this.menu.filter(dish => dish.id !== dishToAdd.id), dishToAdd])
       );
     }
+    console.log('changing cookie')
     document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
   }
 
   removeDishFromMenu(id) {
     this.menu = this.menu.filter(dish => dish.id != id);
-    document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
+    if (this.menu.length !== 0) {
+      document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
+    } else {
+      document.cookie = "dishes=; expires=Wed, 21 Oct 2015 07:28:00 GMT";
+    }
+
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
