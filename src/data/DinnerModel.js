@@ -42,9 +42,8 @@ class DinnerModel {
     if (num >= 0 || !num) this.guests = !num ? "" : num;
     this.updateObservers("input-num-guests");
     this.updateObservers("value-num-guests");
-    document.cookie = 'guests=' + num + ';';
-    this.updateObservers('guests');
-
+    document.cookie = "guests=" + num + ";";
+    this.updateObservers("guests");
   }
 
   getNumberOfGuests() {
@@ -124,10 +123,13 @@ class DinnerModel {
       this.menu.push(dishToAdd);
     } else {
       this.menu = Array.from(
-        new Set([...this.menu.filter(dish => dish.id !== dishToAdd.id), dishToAdd])
+        new Set([
+          ...this.menu.filter(dish => dish.id !== dishToAdd.id),
+          dishToAdd
+        ])
       );
     }
-    console.log('changing cookie')
+    console.log("changing cookie");
     document.cookie = "dishes=" + this.getFullMenu().map(dish => dish.id);
   }
 
@@ -138,7 +140,6 @@ class DinnerModel {
     } else {
       document.cookie = "dishes=; expires=Wed, 21 Oct 2015 07:28:00 GMT";
     }
-
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
@@ -204,7 +205,7 @@ class DinnerModel {
   }
   updateObservers(detailsToUpdateWith) {
     // instead define update function in each observer that doesnt re-render entire view
-    console.log('observer cointains: ', this._observers)
+    console.log("observer cointains: ", this._observers);
     this._observers.forEach(obs => obs.update(detailsToUpdateWith));
   }
 }

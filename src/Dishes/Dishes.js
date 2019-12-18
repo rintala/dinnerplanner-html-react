@@ -45,10 +45,10 @@ class Dishes extends Component {
   }
 
   update(details) {
-    console.log('updating from observer: ', details)
+    console.log("updating from observer: ", details);
     this.setState({
       guests: modelInstance.getNumberOfGuests()
-    })
+    });
   }
 
   render() {
@@ -147,7 +147,6 @@ class Dishes extends Component {
     };
 
     return (
-
       <div className="Dishes">
         <p>Guests {this.state.guests}</p>
         <div>
